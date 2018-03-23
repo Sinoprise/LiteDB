@@ -67,6 +67,9 @@ namespace LiteDB
 #if HAVE_SYNC_OVER_ASYNC
                 Async = _connectionString.Async,
 #endif
+#if HAVE_FLUSH_DISK
+                Flush = _connectionString.Flush,
+#endif
                 InitialSize = _connectionString.InitialSize,
                 LimitSize = _connectionString.LimitSize,
                 Journal = _connectionString.Journal,
@@ -206,7 +209,7 @@ namespace LiteDB
         /// </summary>
         public long Shrink()
         {
-            return this.Shrink(_connectionString == null ? null : _connectionString.Password);
+            return this.Shrink(_connectionString?.Password);
         }
 
         /// <summary>
